@@ -225,58 +225,45 @@ body {
   text-align: center;
 }
 #answ_sec ul li {
-
+  background-color: #fff;
+    /*border: 4px solid #3a3535;*/
+    width:33%;
+    padding:8%;
 }
 #answ1 {
-  background-color: #fff;
   display: inline-block;
-  border: 4px solid #3a3535;
-  width:33%;
   margin:5px;
   text-align: center;
   font-weight:bold;
   border-radius:50px 10px 50px 10px;
-  padding:7%;
   font-size: 200%;
   direction: ltr;
 }
 #answ2 {
-  background-color: #fff;
   display: inline-block;
-  border: 4px solid #3a3535;
-  width:33%;
   margin:5px;
   text-align: center;
   font-weight:bold;
   border-radius:10px 50px 10px 50px;
-  padding:7%;
   font-size: 200%;
   direction: ltr;
 }
 #answ3 {
-  background-color: #fff;
   display: inline-block;
-  border: 4px solid #3a3535;
-  width:33%;
   margin:5px;
   text-align: center;
   font-weight:bold;
   border-radius:10px 50px 10px 50px;
-  padding:7%;
   font-size: 200%;
   direction: ltr;
   margin-bottom: 4%;
 }
 #answ4 {
-  background-color: #fff;
   display: inline-block;
-  border: 4px solid #3a3535;
-  width:33%;
   margin:5px;
   text-align: center;
   font-weight:bold;
   border-radius:50px 10px 50px 10px;
-  padding:7%;
   font-size: 200%;
   direction: ltr;
   margin-bottom: 4%;
