@@ -614,14 +614,13 @@ function Timer ()
     {
       var record_success = '';
     }
-     popup('<span class="glyphicon glyphicon-time"></span><br>'+'زمان شما به پایان رسید' +'<br>'+'امتیاز : '+'<span id="score_end"></span>'+ '<br>' + 'بیشترین رکورد : ' + record +
+     popup('<span style="font-size:125%"><span class="glyphicon glyphicon-time"></span><br>'+'زمان شما به پایان رسید' +'<br>'+'امتیاز : '+'<span id="score_end"></span>'+ '<br>' + 'بیشترین رکورد : ' + record +
      '' + record_success + '<br> <img id="start_first_popup_btn" src="img/restart.png" style="width:41px; height:41px; margin-top:20px; margin-bottom:30px;"></img>'+
+     '<br><button type="button" class="btn btn-danger" style="margin-bottom:5px;" id="continue_time">'+'ادامه میدی؟ (دو <span class="glyphicon glyphicon-heart" ></span> میگیرم)'+'</button>'+
      '<br><input type="button" value="آنالیز  شما" id="analyse" class="btn btn-info btn-lg">  '+
-     '<input type="button" value="ثبت رکورد" id="record_save_btn" class="btn btn-success btn-lg">',
-     'ادامه میدی؟ (دو <span class="glyphicon glyphicon-heart"></span> میگیرم)',
-     'continue_time',15);
+     '<input type="button" value="ثبت رکورد" id="record_save_btn" class="btn btn-success btn-lg"> </span>',
+     'no','no',15);
     score_end_interval = setInterval(score_end,15);
-
     $('#ms').text('0');
   }
 }
