@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Math Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <meta name="theme-color" content="#942990">
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+  </head>
+  <body>
+      <div id="math_screen">
+        <span class="title"><span style="color:#e84d39">نبرد </span>ریاضی</span>
+        <button class="btn btn-default btn-lg" id="start_btn" style="display:none; "><span id="start_btn_span" >شروع</span></button>
+        <div id="status_sec">
+          <div id="score_div"><span class="stat"><span id="score">0</span><span id="reward_score_span" style="color:#fff; font-weight:bold; font-size:100%;"></span></span>  <span class="glyphicon glyphicon-star" style="color:#fff;font-weight:1000;"><span> </div>
+          <div id="live_div"><span class="stat"><span id="live">5</span></span>  <span class="glyphicon glyphicon-heart" style="color:#de2222;font-weight:1000;"><span> </div>
+          <div id="time_div"><span class="stat"><span id="ms">0</span><span style="color:purple;"> : </span><span id="sec">5</span></span>  <span class="glyphicon glyphicon-time" style="color:purple;font-weight:1000;"><span> </div>
+        </div>
+        <div id="quest_sec" style="display:none;">
+          <div id="quest">
+            <span id="question"> 5 + 6 </span>
+          </div>
+          <div id="pause_div">
+            <span id="pause"><span class="glyphicon glyphicon-pause"></span></img></span>
+          </div>
+          <div class="progress" style="width:84%;height:4%;right:8%; left:8%;top:54%; position:fixed; border:3px solid #3a3535;">
+            <div class="progress-bar progress-bar-success" style="width: 0%;">
+            </div>
+          </div>
+        </div>
+        <div id="answ_sec" style="display:none;">
+          <ul>
+            <li class="answ" id="answ1">e</li>
+            <li class="answ" id="answ2">e</li>
+            <li class="answ" id="answ3">e</li>
+            <li class="answ" id="answ4">e</li>
+          </ul>
+        </div>
+
+        <!--<input type="button" value="درجه سختی" id="hardness_btn_main" class="btn btn-info" style="display:none;">-->
+        <span id="credit" class="glyphicon glyphicon-user"></span>
+        <span id="settings" class="glyphicon glyphicon-cog"></span>
+        <span id="license">منتشر شده با مجوز کریتیو کامنز</span>
+        <span id="cur_record">رکورد کنونی : </span>
+        <button type="button" id="best_records_btn_main" class="btn btn-default" style="display:none;"><img src="img/polidum.jpg" alt="برترین ها "/></button>
+      </div>
+      <div id="bestrecord_screen" style="display:none;">
+          <ul class="bestscreen_header">
+            <li><a id="total_records_header" href="#">برترین ها</a></li>
+            <li> <a id="today_records_header" href="#">امروز</a></li>
+          </ul>
+        <table id="records_table" class="table table-condensed table-bordered">
+          <thead>
+            <th>رتبه</th><th>نام</th><th>رکورد</th>
+          </thead>
+          <tbody id="tbody">
+          </tbody>
+        </table>
+      <input type="button" value="بازگشت" id="go_first_btn" class="btn btn-default">
+      </div>
+      <div class="popup_back" style="display:none;">
+      </div>
+      <div class="popup_box" style="display:none;"><!--تبریک <br> مرحله دوم آغاز شد
+        <br><input type="button" class="btn btn-warning btn-sm" id="close_popup_btn" value="خوب . ادامه بده">-->
+      </div>
+
+
+    <script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+    <script src="text.js"></script>
+    <script src="code.js"></script>
+  </body>
+</html>
