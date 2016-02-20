@@ -7,6 +7,7 @@ $(document).ready(function(){
   record=-100;
   to_score = 0;
   cur_end_txxt= '';
+  main_sum = 0;
   var cur_record = getCookies('record_math');
   if(cur_record)
   {
@@ -74,7 +75,7 @@ $(document).ready(function(){
   });
   body.on('click','#back_btn_analyse',function (){popup(cur_end_text);});//also is being used for signup screen
   body.on('click','#settings',hardness);
-  body.on('click','#next_question_true_false_btn',function(){$('.popup_box,.popup_back').hide();   sec_interval = setInterval(Timer,1000);
+  body.on('click','#next_question_true_false_btn',function(){$('.popup_box,.popup_back').hide(); sec_interval = setInterval(Timer,1000);
     ms_interval = setInterval(millisec,10); math();});
 
 
@@ -141,7 +142,7 @@ live =5;
 count_wrongs_selection = 0;
 percent = 0;
 format = 0;
-main_sum =0;
+
 //Initial variable define! END!
 function show_main() {
   cur=0;
@@ -213,7 +214,6 @@ function math() {
   }// Level 2 END*/
   if(score>=50 && score<80)//Level 2
   {
-
       if(level_check == 1) level_check = 'reached 2';
       var rand1 = Math.random(),
           adad1_s = rand1 * 10 + 2,
@@ -228,7 +228,6 @@ function math() {
          trueorfalse = parseInt(trueorfalse_s.toFixed('0'),10);
      switch(true)
      {
-       case (trueorfalse<=10) : sum=sum; break;
        case (trueorfalse>10) : var rand_sum_change_val = Math.random(),
                     sum_change_val_s = rand_sum_change_val * 3 + 1,
                     sum_change_val = parseInt(sum_change_val_s.toFixed('0'));
@@ -248,7 +247,6 @@ function math() {
   }// Level 2 END
   if(score>=80 && score<110)//Level 3
   {
-    main_sum = -1000;
     if(level_check == 2) level_check = 'reached 3';
     var rand1 = Math.random(),
         adad1_s = rand1 * 10 + 2,
@@ -381,7 +379,7 @@ if(score>=300 && score<400)//Level 8 - Division
   if(level_check == 'reached 3') // popup alert for level 3 reach
   {
     $('#math_screen').addClass('level3');
-    percent =0;
+    percent = 0;
     popup('<span style="color:#fff;background-color:green; border-radius:30px;text-align:center;padding: 1px 5px;">'+'تبریک'+'</span>'+' <br> مرحله سوم آغاز شد <br> حالا تفریق ها رو حل کن' ,
      'ادامه' , 'next_level_popup_btn');
     level_check = 3; // for next level check
@@ -475,7 +473,7 @@ if(score>=300 && score<400)//Level 8 - Division
   switch(level_check)//check wether to show + or - .. actully check current level then decides!
   {
     case 1: var question = adad2 + ' + ' + adad1; break;
-    case 2: var question = adad2 + ' + ' + adad1 + ' = ' + sum;
+    case 2: var question = sum + ' = ' + adad1 + ' + ' + adad2;
             break;
 
     case 3: var question = adad2 + ' - ' + adad1;
@@ -527,7 +525,7 @@ if(score>=300 && score<400)//Level 8 - Division
     '<br><input type="button" value="آنالیز  شما" id="analyse" class="btn btn-info btn-lg">  '+
     '<input type="button" value="ثبت رکورد" id="record_save_btn" class="btn btn-success btn-lg"> </span>',
     'no','no',15);
-    score_end_interval = setInterval(score_end,30);
+    score_end_interval = setInterval(score_end,15);
     var t = wrongs + corrects;
   }
 }
@@ -624,6 +622,7 @@ function result() //User Answer Check
 }
 
 function true_false() {
+  console.log('sum : ' + sum + 'main_sum' + main_sum);
   if($(this).text() == 'درست') //correct
   {
     if(sum == main_sum)
@@ -632,9 +631,9 @@ function true_false() {
       score+=5;
       sec+=4;
     }
-    if(sum != main_sum && main_sum!=-1000)
+    else if(sum != main_sum)
     {
-      popup('1اشتباه بود' + '<br>',
+      popup('اشتباه بود' + '<br>',
     'سوال بعدی','next_question_true_false_btn');
       clearInterval(sec_interval);
       clearInterval(ms_interval);
@@ -647,14 +646,14 @@ function true_false() {
   {
     if(sum == main_sum)
     {
-      popup('2اشتباه بود' + '<br>',
+      popup('اشتباه بود' + '<br>',
     'سوال بعدی','next_question_true_false_btn');
       clearInterval(sec_interval);
       clearInterval(ms_interval);
       score-=5;
       live--;
     }
-    if(sum != main_sum && main_sum!=-1000)
+    else if(sum != main_sum)
     {
       math();
       score+=5;
@@ -662,7 +661,7 @@ function true_false() {
     }
   }
   $('#score').html(score);
-  $('#sec').html(live);
+  $('#live').html(live);
   var progress_bar =  $('.progress-bar');
   progress_bar.removeClass('progress-bar-info').removeClass('progress-bar-success').removeClass('progress-bar-danger').html('');
   percent = ((score-50)/30)*100; progress_bar.addClass('progress-bar-success').html('مرحله 2').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')');
@@ -713,7 +712,7 @@ function Timer ()
      '<br><input type="button" value="آنالیز  شما" id="analyse" class="btn btn-info btn-lg">  '+
      '<input type="button" value="ثبت رکورد" id="record_save_btn" class="btn btn-success btn-lg"> </span>',
      'no','no',15);
-    score_end_interval = setInterval(score_end,30);
+    score_end_interval = setInterval(score_end,15);
     $('#ms').text('0');
   }
 }
