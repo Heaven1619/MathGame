@@ -2,7 +2,7 @@ var Text = {
   cur_record : 'رکورد کنونی : ',
   no_record_yet : 'هنوز رکوردی ثبت نشده است',
   wrong : 'اشتباهه . دوباره امتحان کن ',
-  credit : 'سازندگان <br> برنامه نویسی و طراحی رابط کاربری : علیرضا رضانیا <br> طراح و مشاور : امیرحسن عجم',
+  credit : 'Made with <span style="color:red;" class="glyphicon glyphicon-heart"></span> in Iran <br> برنامه نویسی و طراحی رابط کاربری : علیرضا رضانیا',
   login_screen:'ورود'+'<br>'+
         '<input type="text" placeholder="نام کاربری" id="name_text" class="form-control" style="margin-top: 10px;">'+
         '<br>'+
