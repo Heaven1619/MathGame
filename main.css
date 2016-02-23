@@ -200,6 +200,16 @@ body {
   border-radius:180px;
   background-color: #fff;
 }
+#skip {
+  position:fixed;
+  top:43%;
+  right:5%;
+  padding:1.5% 3%;
+  /*border : 2px solid #fff;*/
+  color: #fff;
+  font-size:130%;
+  border-radius:180px;
+}
 #pause span {
   color: purple;
   font-size:140%;

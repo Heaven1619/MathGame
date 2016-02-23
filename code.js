@@ -1,8 +1,8 @@
 $(document).ready(function(){
-  popup('طالب جان ! !<br>اگه باگ یا مشکلی تو بازی دیدی بهم تو تلگرام پیام بده <hr>'+
+  /*popup('طالب جان ! !<br>اگه باگ یا مشکلی تو بازی دیدی بهم تو تلگرام پیام بده <hr>'+
   'یه عکس از بازی هم هر وقت فرصت کردی از گوشیت بگیر و برام بزار. میخوام ببینم رو گوشی 5 اینچی چطور نمایش داده میشه.'
   +'بای',
-  'باشه تو جون بخواه','no',10);
+  'باشه تو جون بخواه','no',10);*/
   //Check if a record already is broken using Cookie
   record=-100;
   to_score = 0;
@@ -42,7 +42,7 @@ $(document).ready(function(){
   body.on('click','#close_popup_btn',popupclose);
   body.on('click','#start_first_popup_btn',start_first);
   body.on('click','#next_level_popup_btn',next_level);
-  body.on('click','#quest',make_vertical_question);
+  $('#question').on('click',make_vertical_question);
   body.on('click','#credit',credits);
   body.on('click','#analyse',analyse);
   body.on('click','#show_wrong_btn',show_wrongs);
@@ -77,10 +77,17 @@ $(document).ready(function(){
   body.on('click','#settings',hardness);
   body.on('click','#next_question_true_false_btn',function(){$('.popup_box,.popup_back').hide(); sec_interval = setInterval(Timer,1000);
     ms_interval = setInterval(millisec,10); math();});
-
+  body.on('click','#skip',skip);
 
 });
-
+function skip() {
+  math();
+  score-=1;
+  add_score_reward_status_bar('minus',1);
+  live--;
+  $('#live').text(live);
+  $('#score').text(score);
+}
 function credits() {
   popup(Text.credit,
   'خوب میگی چی کار کنم؟','hadrness_screen_close_btn');
@@ -135,14 +142,18 @@ records_array = [];
 corrects = 0;
 count = 0;
 reward_Time =2; //default value (medium level that already selected)
-reward_Score = 4;
+reward_Score = 5;
 level_check = 1;
 cur=0;
 live =5;
 count_wrongs_selection = 0;
 percent = 0;
 format = 0;
-
+var adad = {
+  adad1 : 0,
+  adad2 : 0
+}
+cur_state_question = {};
 //Initial variable define! END!
 function show_main() {
   cur=0;
@@ -160,7 +171,7 @@ function show_main() {
   corrects = 0;
   count = 0;
   reward_Time = 2; //default value (medium level that already selected)
-  reward_Score = 4;
+  reward_Score = 5;
   level_check = 1;
   to_score = 0;
   $('.title,#cur_record').hide();
@@ -179,8 +190,10 @@ function show_main() {
 }
 
 function math() {
+  cur_state_question = {};
+  $('#question').css({'lineHeight':'100px'});
   count++;
-  if(score<50)//Level 1
+  if(score<60)//Level 1
   {
 
     var rand1 = Math.random(),
@@ -189,30 +202,15 @@ function math() {
     var rand2 = Math.random(),
         adad2_s = rand2 * 10 + 2;
         adad2 = parseInt(adad2_s.toFixed('0'),10);
+    adad.adad1 = adad1;
+    adad.adad2 = adad2;
     sum = adad1 + adad2;
     var val_other1 = 2;
     var val_other2 = 1;
     var val_other3 = 2;
     var val_other4 = 1;
   } // Level 1 END
-
-  /*if(score>=50 && score<80)//Level 2
-  {
-
-      if(level_check == 1) level_check = 'reached 2';
-      var rand1 = Math.random(),
-          adad1_s = rand1 * 35 + 5,
-          adad1 = parseInt(adad1_s.toFixed('0'),10);
-      var rand2 = Math.random(),
-          adad2_s = rand2 * 35 + 5,
-          adad2 = parseInt(adad2_s.toFixed('0'),10);
-     sum = adad1 + adad2;
-     var val_other1 = 10;
-     var val_other2 = 1;
-     var val_other3 = 5;
-     var val_other4 = 1;
-  }// Level 2 END*/
-  if(score>=50 && score<80)//Level 2
+  if(score>=60 && score<120)//Level 2
   {
       if(level_check == 1) level_check = 'reached 2';
       var rand1 = Math.random(),
@@ -224,28 +222,31 @@ function math() {
      sum = adad1 + adad2;
      main_sum = sum;
      var rand_trueorfalse = Math.random(),
-         trueorfalse_s = rand_trueorfalse * 19 + 1,
+         trueorfalse_s = rand_trueorfalse * 29 + 10,
          trueorfalse = parseInt(trueorfalse_s.toFixed('0'),10);
-     switch(true)
+     if(trueorfalse<20)
      {
-       case (trueorfalse>10) : var rand_sum_change_val = Math.random(),
-                    sum_change_val_s = rand_sum_change_val * 3 + 1,
-                    sum_change_val = parseInt(sum_change_val_s.toFixed('0'));
-                    var rand_more_or_less = Math.random(),
-                        more_or_less_s = rand_more_or_less * 19 + 1,
-                        more_or_less = parseInt(more_or_less_s.toFixed('0'));
-                    if(more_or_less <= 10) // +
-                    {
-                      sum+=sum_change_val;
-                    }
-                    if(more_or_less > 10) // -
-                    {
-                      sum-=sum_change_val;
-                    }
-                    break;
+       sum=sum;
      }
+     else if(trueorfalse>20)
+     {
+        var rand_sum_change_val = Math.random(),
+            sum_change_val_s = rand_sum_change_val * 3 + 1,
+            sum_change_val = parseInt(sum_change_val_s.toFixed('0'));
+        var rand_more_or_less = Math.random(),
+          more_or_less_s = rand_more_or_less * 19 + 1,
+          more_or_less = parseInt(more_or_less_s.toFixed('0'));
+        if(more_or_less <= 10) // +
+        {
+          sum+=sum_change_val;
+        }
+        if(more_or_less > 10) // -
+        {
+          sum-=sum_change_val;
+        }
+    }
   }// Level 2 END
-  if(score>=80 && score<110)//Level 3
+  if(score>=120 && score<180)//Level 3
   {
     if(level_check == 2) level_check = 'reached 3';
     var rand1 = Math.random(),
@@ -260,7 +261,7 @@ function math() {
    var val_other3 = 2;
    var val_other4 = 1;
   } // Level 3 END
-  if(score>=110 && score<150)//Level 4
+  if(score>=180 && score<240)//Level 4
   {
     if(level_check == 3) level_check = 'reached 4';
     var rand1 = Math.random(),
@@ -279,7 +280,7 @@ function math() {
    var val_other4 = 1;
  } // Level 4 END
 
-  if(score>=150 && score<200)//Level 5
+  if(score>=240 && score<300)//Level 5
   {
 
     if(level_check == 4) level_check = 'reached 5';
@@ -295,9 +296,8 @@ function math() {
    var val_other3 = 2;
    var val_other4 = 1;
  } // Level 5 END
- if(score>=200 && score<250)//Level 6 // sum and multiplication
+ if(score>=300 && score<360)//Level 6 // sum and multiplication
  {
-
    if(level_check == 5) level_check = 'reached 6';
    var rand1 = Math.random(),
        adad1_s = rand1 * 8 + 0,
@@ -314,7 +314,7 @@ function math() {
   var val_other3 = 2;
   var val_other4 = 1;
 } // Level 6 END
-if(score>=250 && score<300)//Level 7
+if(score>=360 && score<420)//Level 7
 {
 
   if(level_check == 6) level_check = 'reached 7';
@@ -342,7 +342,7 @@ if(score>=250 && score<300)//Level 7
  var val_other3 = 2;
  var val_other4 = 1;
 } // Level 7 END
-if(score>=300 && score<400)//Level 8 - Division
+if(score>=420 && score<480)//Level 8 - Division
 {
 
   if(level_check == 7) level_check = 'reached 8';
@@ -361,10 +361,36 @@ if(score>=300 && score<400)//Level 8 - Division
  var val_other3 = 2;
  var val_other4 = 1;
 } // Level 8 END
+if(score>=480 && score<540)//Level 9 - missed plus
+{
+
+  if(level_check == 8) level_check = 'reached 9';
+
+    var rand1 = Math.random(),
+        adad1_s = rand1 * 9 + 1;
+        adad1 = parseInt(adad1_s.toFixed('0'),10);
+    var rand2 = Math.random(),
+        adad2_s = rand2 * 9 + 1;
+        adad2 = parseInt(adad2_s.toFixed('0'),10);
+    sum = adad1 + adad2;
+    var rand_missed_position = Math.random(),
+        missed_position_s = rand1 * 1 + 1,
+        missed_position = parseInt(missed_position_s.toFixed('0'),10);
+    switch(missed_position)
+    {
+      case 1 : adad1 = '?'; res = sum - adad2;  break;
+      case 2 : adad2 = '?'; res = sum - adad1;  break;
+    }
+    console.log(res + ' | ' + sum);
+ var val_other1 = 2;
+ var val_other2 = 1;
+ var val_other3 = 2;
+ var val_other4 = 1;
+} // Level 9 END
   if(level_check == 'reached 2') // popup alert for level 2 reach
   {
     $('#math_screen').addClass('level2');
-    percent =0;
+    percent = 0;
     popup('<span style="color:#fff;background-color:green; border-radius:30px;text-align:center;padding: 1px 5px;">'+'تبریک </span><br> مرحله دوم آغاز شد<br>سوالات سختر میشه' ,
      'ادامه' , 'next_level_popup_btn');
     level_check = 2; // for next level check
@@ -439,6 +465,15 @@ if(score>=300 && score<400)//Level 8 - Division
     clearInterval(sec_interval);
     clearInterval(ms_interval);
   }
+  if(level_check == 'reached 9') // popup alert for level 7 reach
+  {
+    percent =0;
+    popup('<span style="color:#fff;background-color:green; border-radius:30px;text-align:center;padding: 1px 5px;">'+'تبریک'+'</span>'+' <br>مرحله 8 آغاز شد! <br>منتظر تقسیم بودی؟ حلشون کن !',
+     'ادامه' , 'next_level_popup_btn');
+    level_check = 9; // for next level check
+    clearInterval(sec_interval);
+    clearInterval(ms_interval);
+  }
   var which_answ_rand = Math.random(), // find a random answer block 1 or 2 or 3 or 4
       which_answ_s = which_answ_rand * 3 + 1 ,
       which_answ = parseInt(which_answ_s.toFixed('0'),10);
@@ -494,6 +529,7 @@ if(score>=300 && score<400)//Level 8 - Division
               }
               break;
     case 8: var question = adad2 + ' ÷ ' + res; break;
+    case 9: var question = sum + ' = ' + adad2 + ' + ' + adad1; break;
   }
 
   $('#question').text(question);
@@ -570,7 +606,7 @@ function result() //User Answer Check
       reward_Time = 4;
       reward_Score = 1;
     }
-    add_score_reward_status_bar();
+    add_score_reward_status_bar('plus',reward_Score);
     corrects++;
 
     switch(level_check)
@@ -599,8 +635,8 @@ function result() //User Answer Check
     selected_wrong_array.push(selected);
     wrongs++;
     score-=5;
-
     live--;
+    add_score_reward_status_bar('minus',5);
   }
 
   $('#score').text(score);
@@ -609,13 +645,13 @@ function result() //User Answer Check
   progress_bar.removeClass('progress-bar-info').removeClass('progress-bar-success').removeClass('progress-bar-danger').html('');
   switch(level_check)
   {
-    case 1 : percent = ((score-0)/50)*100; progress_bar.html('مرحله 1').append(' (' + score + ' <span class="glyphicon glyphicon-star">' + ')'); break;
-    case 3 : percent = ((score-80)/30)*100; progress_bar.addClass('progress-bar-info').html('مرحله 3').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
-    case 4 : percent = ((score-110)/40)*100; progress_bar.addClass('progress-bar-active').html('مرحله 4').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
-    case 5 : percent = ((score-150)/50)*100; progress_bar.addClass('progress-bar-danger').html('مرحله 5').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
-    case 6 : percent = ((score-200)/50)*100; progress_bar.addClass('progress-bar-success').html('مرحله 6').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
-    case 7 : percent = ((score-250)/50)*100; progress_bar.addClass('progress-bar-info').html('مرحله 7').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
-    case 8 : percent = ((score-250)/50)*100; progress_bar.addClass('progress-bar-warning').html('مرحله 8').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
+    case 1 : percent = ((score-0)/60)*100; progress_bar.html('مرحله 1').append(' (' + score + ' <span class="glyphicon glyphicon-star">' + ')'); break;
+    case 3 : percent = ((score-120)/60)*100; progress_bar.addClass('progress-bar-info').html('مرحله 3').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
+    case 4 : percent = ((score-240)/60)*100; progress_bar.addClass('progress-bar-active').html('مرحله 4').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
+    case 5 : percent = ((score-300)/60)*100; progress_bar.addClass('progress-bar-danger').html('مرحله 5').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
+    case 6 : percent = ((score-360)/60)*100; progress_bar.addClass('progress-bar-success').html('مرحله 6').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
+    case 7 : percent = ((score-420)/60)*100; progress_bar.addClass('progress-bar-info').html('مرحله 7').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
+    case 8 : percent = ((score-480)/60)*100; progress_bar.addClass('progress-bar-warning').html('مرحله 8').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')'); break;
   }
   progress_bar.css('width',percent+'%');
   $('#score_progress').html(score);
@@ -664,7 +700,7 @@ function true_false() {
   $('#live').html(live);
   var progress_bar =  $('.progress-bar');
   progress_bar.removeClass('progress-bar-info').removeClass('progress-bar-success').removeClass('progress-bar-danger').html('');
-  percent = ((score-50)/30)*100; progress_bar.addClass('progress-bar-success').html('مرحله 2').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')');
+  percent = ((score-60)/60)*100; progress_bar.addClass('progress-bar-success').html('مرحله 2').append(' (' + score + ' <span class="glyphicon glyphicon-star"> ' + ')');
   progress_bar.css('width',percent+'%');
   $('#score_progress').html(score);
 }
@@ -811,20 +847,19 @@ function start_first () { // start again when game overed
   sec_interval = setInterval(Timer,1000);
   ms_interval = setInterval(millisec,10);
 }
-
-
 $('#sec').text('0');$('#ms').text('0');
 
-
 function make_vertical_question() {
-   cur = $('#question').text();
-   reg1= /^[0-9]+/g;
-   reg2= /\+ [0-9]+/g;
-   var cur1 = cur.match(reg1).toString();
-   var cur2 = cur.match(reg2).toString();
-   var cur2_noplus = cur2.replace('+','');
-   $('#question').html(cur2_noplus+ '<br>+<br>' + cur1);
+  var question = $('#question');
+  cur_state_question = {lineHeight :question.css('lineHeight')};
+  question.html(adad.adad1 + '<br>+<br>' + adad.adad2).css({'lineHeight':'53px',});
+  question.off('click').on('click',make_horizontal_question);
  }
+function make_horizontal_question() {
+  var question = $('#question');
+  question.html(adad.adad2 + ' + ' + adad.adad1).css({'lineHeight':cur_state_question.lineHeight,});
+  question.off('click').on('click',make_vertical_question);
+}
 
 function analyse() {
   var ana = '';
@@ -846,7 +881,7 @@ function analyse() {
     analyse = 'برای آنالیز دقیق باید به سوالات بیشتری جواب داده باشید. لطفا حد اقل به '+
     (7-count) + ' سوال دیگر نیز پاسخ دهید';
   }
-  popup(analyse,'<span class="glyphicon glyphicon-arrow-left">','back_btn_analyse');
+  popup('<span style="font-size:120%">' + analyse + '</span>','<span class="glyphicon glyphicon-arrow-left">','back_btn_analyse');
 }
 
 function show_wrongs()
@@ -859,24 +894,37 @@ function show_wrongs()
       result +=sum_of_wrong_array[i]+'<span style="color:green;"> <= </span>' +selected_wrong_array[i]+ ' ≠ ' + wrongs_array[i]+'<br>';
     }
 
-    popup(result,'<span class="glyphicon glyphicon-arrow-left">','back_btn_analyse');
+    popup('<span style="font-size:120%">' + result + '</span>','<span class="glyphicon glyphicon-arrow-left">','back_btn_analyse');
   }
   else if(wrongs_array.length>=0)
   {
-    popup('احسنت. هیچ غلطی نداشتی'
+    popup('<span style="font-size:120%">'+'احسنت. هیچ غلطی نداشتی'+'</span>'
   ,'<span class="glyphicon glyphicon-arrow-left">', 'back_btn_analyse');
   }
 }
 
 
-function add_score_reward_status_bar() {
-  $('#reward_score_span').hide(0,function(){
-    $('#score').hide();
-    $('#reward_score_span').html('+' + reward_Score).show(500,function(){
-      $('#reward_score_span').delay(100).html('');
-      $('#score').show();
+function add_score_reward_status_bar(kind,val) {
+  if(kind === 'plus')
+  {
+    $('#reward_score_span').hide(0,function(){
+      $('#score').hide();
+      $('#reward_score_span').html('+' + val).css('color','green').show(500,function(){
+        $('#reward_score_span').delay(100).html('');
+        $('#score').show();
+      });
     });
-  });
+  }
+  if(kind === 'minus')
+  {
+    $('#reward_score_span').hide(0,function(){
+      $('#score').hide();
+      $('#reward_score_span').html(val.toString()+'-').css('color','red').show(500,function(){
+        $('#reward_score_span').delay(100).html('');
+        $('#score').show();
+      });
+    });
+  }
 }
 function setCookies(cookie_name,cookie_value,expire_days) {
   var date = new Date();
