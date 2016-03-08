@@ -1,5 +1,6 @@
 <?php
-$mysqli = new mysqli('localhost','root','','Math');
+header("Access-Control-Allow-Origin: *");
+$mysqli = new mysqli('localhost','heavenri','6J83fCgy9v','heavenri_math');
 $name_signup = $_POST['name_signup'];
 
 $check = $mysqli->query("SELECT name FROM Medium WHERE name='$name_signup'");

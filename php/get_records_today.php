@@ -1,6 +1,8 @@
 <?php
-$mysqli = new mysqli('localhost','root','','Math');
-$results = $mysqli->query("SELECT name,record FROM Today ORDER BY record DESC");
+header("Access-Control-Allow-Origin: *");
+$mysqli = new mysqli('localhost','heavenri','6J83fCgy9v','heavenri_math');
+$results_unlimited = $mysqli->query("SELECT name,record FROM Medium ORDER BY record DESC");
+$results = $mysqli->query("SELECT name,record FROM Today ORDER BY record DESC LIMIT 100");//LIMITED TO JUST 100 RESULTS
 $username = $_POST['username'];
 if($results->num_rows>0)
 {
@@ -25,11 +27,11 @@ if($results->num_rows>0)
   {
     $rank = 'شما هنوز رکوردی ثبت نکرده اید';
   }
-  echo '<tr><td colspan="3">'.'رتبه شما : '.$rank.'</tr>';
+  echo '<tr><td colspan="3" style="color:#fff;">'.'رتبه شما : '.$rank.'</tr>';
 }
 else
 {
-  echo ' <span style="text-align:center; font-weight:bold; font-size:150%;">رکوردی یافت نشد</span> ';
+  echo ' <span style="text-align:center; color:#fff; font-weight:bold; font-size:150%;">رکوردی یافت نشد</span> ';
 }
 
 $mysqli->close();

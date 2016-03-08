@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <meta name="theme-color" content="#942990">
     <link rel="stylesheet" href="lib/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="icon" type="image/png" href="img/favicon.png">
   </head>
   <body>
       <div id="math_screen">
         <span class="title"><span style="color:#e84d39">نبرد </span>ریاضی</span>
-        <button class="btn btn-default btn-lg" id="start_btn" style="display:none; "><span id="start_btn_span" >شروع</span></button>
+        <button class="btn btn-default btn-lg" id="start_btn" style="display:none; "><span id="start_btn_span" style="font-size:145%;">شروع</span></button>
         <div id="status_sec">
           <div id="score_div"><span class="stat"><span id="score">0</span><span id="reward_score_span" style="color:black; font-weight:bold; font-size:100%;"></span></span>  <span  class="glyphicon glyphicon-star" style="color:orange;font-weight:1000;"><span> </div>
           <div id="live_div"><span class="stat"><span id="live">5</span></span>  <span class="glyphicon glyphicon-heart" style="color:#de2222;font-weight:1000;"><span> </div>
@@ -21,6 +21,7 @@
         <div id="quest_sec" style="display:none;">
           <div id="quest">
             <span id="question"> 5 + 6 </span>
+            <span id="question2" style="display:none;"> 5 + 6 </span>
           </div>
           <span id="skip">اینو نمیدونم !</span>
           <div id="pause_div">
@@ -32,29 +33,37 @@
           </div>
         </div>
         <div id="answ_sec" style="display:none;">
-          <ul>
-            <li class="answ" id="answ1">e</li>
+          <ul id="answ_ul">
+            <li class="answ" id="answ1"><a href="#"><span>a</span></a></li>
             <li class="answ" id="answ2">e</li>
             <li class="answ" id="answ3">e</li>
             <li class="answ" id="answ4">e</li>
           </ul>
+          <ul id="answ_bigger_ul" style="margin-top:20px; display:none;">
+            <li class="answ_bigger" id="answ_bigger1">راست</li>
+            <li class="answ_bigger" id="answ_bigger2">چپ</li>
+            <li class="answ_bigger" id="answ_bigger3">مساوی</li>
+          </ul>
         </div>
-
+        <span id="credit">Credit</span>
         <!--<input type="button" value="درجه سختی" id="hardness_btn_main" class="btn btn-info" style="display:none;">-->
-        <span id="credit" class="glyphicon glyphicon-user"></span>
+        <!--<span id="purchase_main_btn" class="glyphicon glyphicon-usd"></span>-->
+        <span id="user" class="glyphicon glyphicon-user"></span>
         <span id="settings" class="glyphicon glyphicon-cog"></span>
-        <span id="license">منتشر شده با مجوز کریتیو کامنز</span>
         <span id="cur_record">رکورد کنونی : </span>
         <button type="button" id="best_records_btn_main" class="btn btn-default" style="display:none;"><img src="img/polidum.jpg" alt="برترین ها "/></button>
       </div>
-      <div id="bestrecord_screen" style="display:none;">
+      <div id="loading_screen" style="display:none;position:fixed; z-index:5000; width:100%; height:100%;">
+        <span style="border:2px solid #fff; border-radius: 100px 20px 100px 20px; padding: 8px 15px;position:fixed;left:20%;background-color:purple; top:40%;color:#fff;font-weight:bold; font-size:150%;">در حال اتصال به سرور ...</span>
+      </div>
+      <div id="bestrecord_screen" style="display:none; background-color:purple;">
           <ul class="bestscreen_header">
-            <li><a id="total_records_header" href="#">برترین ها</a></li>
-            <li> <a id="today_records_header" href="#">امروز</a></li>
+            <li><a id="total_records_header" href="#" style="font-weight:bold; font-size:120%;">برترین ها</a></li>
+            <li> <a id="today_records_header" href="#" style="font-weight:bold; font-size:120%;">امروز</a></li>
           </ul>
         <table id="records_table" class="table table-condensed table-bordered">
-          <thead>
-            <th>رتبه</th><th>نام</th><th>رکورد</th>
+          <thead style="background-color:rgb(150, 130, 38)">
+            <th style="color:#fff;">رتبه</th><th style="color:#fff;">نام</th><th style="color:#fff;">رکورد</th>
           </thead>
           <tbody id="tbody">
           </tbody>
@@ -67,9 +76,14 @@
         <br><input type="button" class="btn btn-warning btn-sm" id="close_popup_btn" value="خوب . ادامه بده">-->
       </div>
 
-
+    <audio src="sound/success.wav" id="success_sound"></audio>
+    <audio src="sound/error.wav" id="error_sound"></audio>
+    <audio src="sound/level.wav" id="level_sound"></audio>
+    <audio src="sound/start.wav" id="start_sound"></audio>
+    <audio src="sound/fail.mp3" id="fail_sound"></audio>
     <script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
-    <script src="text.js"></script>
-    <script src="code.js"></script>
+    <script src="js/code.js"></script>
+    <script src="js/text.js"></script>
+    <script src="js/level_reach_return.js"></script>
   </body>
 </html>

@@ -1,0 +1,467 @@
+@font-face {
+  font-family:dastnevis;
+  src : url(../fonts/dastnevis.otf);
+}
+#start_btn_span {
+  color:brown;
+}
+/*@keyframes level1 {
+ to {background-color: #ae249c;}
+ }
+@keyframes level2 {
+ to {background-color: #d25400;}
+}
+@keyframes level3 {
+ to {background-color: #25ae5f;}
+}
+@keyframes level4 {
+ to {background-color: #ae249c;}
+}
+@keyframes level5 {
+ to {background-color: #ae249c;}
+}
+@keyframes level6 {
+ to {background-color: #ae249c;}
+}
+@keyframes level7 {
+ to {background-color: #ae249c;}
+}
+@keyframes level8 {
+ to {background-color: #ae249c;}
+}*/
+* {
+  box-sizing : border-box;
+  font-family:dastnevis;
+  padding: 0;
+  margin: 0;
+  font-weight: 450;
+}
+body {
+  background-color: #ae249c;
+  direction : rtl;
+}
+#start_btn {
+  position: fixed;
+  left:0px;
+  top: 40%;
+  color:#62a5d0;
+  font-weight: bolder;
+  background-color: rgb(255, 255, 255);
+}
+
+#version {
+  position: fixed;
+  left: 38%;
+  bottom: 7%;
+  padding:5px;
+  border: 3px solid grey;
+  border-radius: 60px;
+  font-weight: bold;
+}
+#license {
+  position: fixed;
+  left: 31%;
+  bottom: 1%;
+  padding:5px;
+  border-radius: 60px;
+  font-weight: bold;
+  color:#fff;
+}
+#user {
+  font-size:80%;
+  border: 2px solid #fff;
+  border-radius: 60px;
+  position: fixed;
+  left: 2%;
+  top:93%;
+  padding:8px;
+  border-radius: 60px;
+  font-weight: bold;
+  color:#fff;
+}
+#credit {
+  font-size:65%;
+  border: 1px solid #fff;
+  border-radius: 60px;
+  position: fixed;
+  right: 2%;
+  bottom:2%;
+  padding:2px 8px;
+  border-radius: 120px 10px 120px 10px;
+  font-weight: bold;
+  color:#fff;
+}
+#purchase_main_btn {
+  font-size:80%;
+  border: 2px solid #fff;
+  border-radius: 60px;
+  position: fixed;
+  left: 2%;
+  top:80%;
+  font-size:95%;
+  padding:7px;
+  border-radius: 60px;
+  font-weight: bold;
+  color:#fff;
+}
+#settings {
+  border: 2px solid #fff;
+  border-radius: 60px;
+  position: fixed;
+  left: 2%;
+  top:86.5%;
+  padding:7px;
+  font-weight: bold;
+  color:#fff;
+}
+.title {
+  position: fixed;
+  left: 21%;
+  right:21%;
+  top: 20%;
+  color : #fff;
+  font-size:425%;
+  font-weight: 800;
+
+}
+#hardness_btn_main {
+  position: fixed;
+  left: 38%;
+  top: 61%;
+  width:20%;
+}
+
+#best_records_btn_main {
+  position:fixed;
+  left: 41%;
+  top: 63%;
+  width:20%;
+}
+.hidden {
+  display:none;
+}
+#math_screen {
+  width:100%;
+  height:100%;
+  background-color: #2b3e4d ;
+  /*#ae249c*/
+}
+/*.level1
+{
+  animation-name : level1;
+  animation-duration:1s;
+  animation-fill-mode :forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+.level2
+{
+  animation-name : level2;
+  animation-duration:1s;
+  animation-fill-mode :forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+.level3
+{
+  animation-name : level3;
+  animation-duration:1s;
+  animation-fill-mode :forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+.level4
+{
+  animation-name : level4;
+  animation-duration:1s;
+  animation-fill-mode :forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+.level5
+{
+  animation-name : level5;
+  animation-duration:1s;
+  animation-fill-mode :forwards;
+  -webkit-animation-fill-mode: forwards;
+}*/
+#answ_sec {
+  width:100%;
+  height:46%;
+  margin-bottom: 5%;
+  position: relative;
+}
+#quest_sec {
+  width:95%;
+  height:46%;
+  text-align:center;
+  margin: 0px 2.5%;
+  margin-bottom: -5%;
+  position: relative;
+}
+.progress-bar-success {
+  background-color: #26ae5e;
+}
+
+#status_sec {
+  font-size:115%;
+  width:100%;
+  height:8%;
+  position: relative;
+}
+
+#math_screen {
+  position : fixed;
+
+}
+#quest {
+  text-align:center;
+  margin-top: 40px;
+}
+/*#pause_div {
+  margin-top: 80px;
+  text-align: right;
+  margin-right:15px;
+}*/
+#pause {
+  position:fixed;
+  right:42%;
+  top:42%;
+  padding:1.5% 5%;
+  border : 2px solid #fff;
+  border-radius:180px;
+  background-color: #fff;
+}
+#skip {
+  position:fixed;
+  top:43%;
+  right:5%;
+  padding:1.5% 3%;
+  /*border : 2px solid #fff;*/
+  color: #fff;
+  font-size:130%;
+  border-radius:180px;
+}
+#pause span {
+  color: purple;
+  font-size:140%;
+}
+#status_sec ul li {
+  display: inline-block;
+
+}
+#question ,#question2 {
+  font-weight : 800;
+  font-size: 500%;
+  color : #fff;
+  padding: 25px;
+
+}
+#status_sec div {
+  width:29%;
+  position:fixed;
+  margin-top : 3%;
+  /*border: 2px solid purple;
+  border-radius: 50px 10px 50px 10px;*/
+  text-align: center;
+}
+#status_sec div .stat {
+  font-weight:1000;
+  font-size: 180%;
+  color:black;
+  text-align: center;
+}
+.answ_bigger {
+  margin:6px;
+  border: 3px solid #3a3535;
+  font-size: 125%;
+  font-weight: bold;
+  display: inline-block;
+}
+#answ_bigger1 {
+  border-radius:30px 200px 200px 30px;
+}
+#answ_bigger2 {
+  border-radius:200px 30px 30px 200px;
+}
+#answ_bigger3 {
+  border-radius:200px;
+}
+#answ_sec ul li {
+
+  background-color: #fff;
+    /*border: 4px solid #3a3535;*/
+    width:33%;
+    padding:8%;
+    border: 3px solid #3a3535;
+}
+#answ1 {
+  display: inline-block;
+  margin:5px;
+  text-align: center;
+  font-weight:bold;
+  border-radius:50px 10px 50px 10px;
+  font-size: 200%;
+  direction: ltr;
+}
+#answ2 {
+  display: inline-block;
+  margin:5px;
+  text-align: center;
+  font-weight:bold;
+  border-radius:10px 50px 10px 50px;
+  font-size: 200%;
+  direction: ltr;
+}
+#answ3 {
+  display: inline-block;
+  margin:5px;
+  text-align: center;
+  font-weight:bold;
+  border-radius:10px 50px 10px 50px;
+  font-size: 200%;
+  direction: ltr;
+}
+#answ4 {
+  display: inline-block;
+  margin:5px;
+  text-align: center;
+  font-weight:bold;
+  border-radius:50px 10px 50px 10px;
+  font-size: 200%;
+  direction: ltr;
+}
+#answ_sec ul {
+text-align: center;
+}
+.popup_back {
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:1000;
+  background-color: black;
+  opacity: .5;
+}
+.popup_box {
+  overflow-y: scroll;
+  position: fixed;
+  left:11.25%;
+  right:11.25%;
+  top:25%;
+  background-color: #fff;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding:10px;
+  z-index:1500;
+  text-align: center;
+  font-weight:bold;
+  font-size:150%;
+  line-height: 200%;
+}
+
+#score_div {
+  /*background-image: url(img/score2.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-clip: border-box;
+  background-position: center;*/
+  background-color: #fff;
+  border-radius: 50px 50px 50px 50px;
+  display: inline-block;
+  left: 65%;
+  height:5.5%;
+}
+#live_div {
+  /*background-image: url(img/live2.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-clip: border-box;*/
+  background-color: #fff;
+  border-radius: 50px 50px 50px 50px;
+  display: inline-block;
+  left: 35%;
+  height:5.5%;
+}
+#time_div {
+  /*background-image: url(img/time2.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-clip: border-box;
+  background-position: center;*/
+  background-color: #fff;
+  border-radius: 50px 50px 50px 50px;
+  display: inline-block;
+  left: 5%;
+  height:5.5%;
+}
+
+#select_level_main {
+  position:fixed;
+  width:100%;
+  height:100%;
+}
+
+#cur_record {
+  position:fixed;
+  top:10%;
+  background-color: green;
+  color:#fff;
+  padding:2px 8px;;
+  font-weight:bold;
+  font-size:115%;
+  border-radius: 15px 0px 0px 15px;
+}
+
+#bestrecord_screen {
+  position: fixed;
+  width:100%;
+  height:100%;
+  overflow-y: auto;
+  text-align: center;
+}
+
+#records_table {
+  width:94%;
+  margin-top:3%;
+  margin-right:3%;
+
+}
+#records_table th{
+  text-align: right;
+}
+#go_first_btn {
+  margin-bottom:10px;
+}
+.bestscreen_header {
+  position: relative;
+  background-color:rgb(182, 156, 88);;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  height: 60px;
+  line-height: 55px;
+}
+.bestscreen_header li {
+  position: relative;
+  display:inline-block;
+  background-color:brown;
+  width:47%;
+  height: 50px;
+  line-height: 45px;
+  color:#fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.focused {
+  position: relative;
+  display:inline-block;
+  background-color:brown;
+  border:2px dashed #fff;
+  width:47%;
+  height: 50px;
+  line-height: 45px;
+  color:#fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.bestscreen_header li a {
+text-decoration: none;
+color:#fff;
+}
